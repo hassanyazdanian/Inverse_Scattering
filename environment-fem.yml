@@ -1,0 +1,17 @@
+# Optional Linux environment for the legacy DOLFIN FEM-BEM examples.
+# The core analytical Python examples need only requirements.txt.
+name: inverse-scattering-fem
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - fenics-dolfin=2019.1.0
+  - numpy=1.26
+  - scipy=1.13
+  - matplotlib
+  - pygalmesh
+  - meshio
+  - numba
+  - pip
+  - pip:
+      - bempp-cl==0.4.2

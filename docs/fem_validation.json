@@ -1,0 +1,28 @@
+{
+  "k": 1.0,
+  "n": 2.25,
+  "convergence": [
+    {
+      "mesh_size": 0.45,
+      "vertices": 60,
+      "cells": 175,
+      "relative_far_field_error": 0.14485038185139465,
+      "gmres_residual": 4.727737552238789e-09
+    },
+    {
+      "mesh_size": 0.3,
+      "vertices": 176,
+      "cells": 651,
+      "relative_far_field_error": 0.061150162669581315,
+      "gmres_residual": 2.306565948805634e-09
+    },
+    {
+      "mesh_size": 0.2,
+      "vertices": 504,
+      "cells": 2230,
+      "relative_far_field_error": 0.028496474421776895,
+      "gmres_residual": 4.763025319737653e-10
+    }
+  ],
+  "relative_total_field_error": 0.012416478334208945
+}

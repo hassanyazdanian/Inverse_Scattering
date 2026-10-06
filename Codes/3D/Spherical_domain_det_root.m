@@ -1,19 +1,5 @@
-clc;clear; close all;
-format long
-%% ------------------------------
-
-  %Let D be a spherical domain of radius r 
-  % with constant refractive index n(x) = n.
-
-  % Hassan Yazdanin, 02/14/2023
-%%
-myfun = @(k,r,n,m) real(f(k,r,n,m)); % parameterized function
-
-% parameter
-r = 1;  %radius of the circule
-n = 40;  % refractive index
-m = 0;      %only m=0
-x0 = 1.5; % initial point
-
-fun = @(k) myfun(k,r,n,m);  % function of k alone
-z = fzero(fun,x0)
+% This bracket selects the m=0 root; it is not a global search over orders.
+addpath(fileparts(mfilename('fullpath')));
+n = 40; m = 0;
+k = fzero(@(k) f(k,n,m),[0.70 0.73]);
+fprintf('n=%g, m=%d, k=%.15g\n',n,m,k);

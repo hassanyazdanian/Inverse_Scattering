@@ -1,13 +1,5 @@
-function C = C1_function (phi, n, N)
-
-
-syms r theta
-
-C = zeros(N,N);
-for i=1:N
-    for j=i
-        f(r,theta) = phi(i)*phi(j)*r;
-        fun = matlabFunction(f);
-        C(i,j) = (n/(n-1))*integral2(fun,0,1,0,2*pi);
-    end
+function matrix = C1_function(phi,n,N)
+% Compatibility wrapper for full symbolic reference assembly.
+addpath(fullfile(fileparts(mfilename('fullpath')),'..','common'));
+matrix = ite_symbolic_matrix('C',2,phi,[],n,N);
 end

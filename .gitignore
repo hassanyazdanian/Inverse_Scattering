@@ -1,0 +1,17 @@
+# Generated results and Python caches.
+/outputs/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+# MATLAB autosaves and local preferences.
+*.asv
+*.m~
+*.mex*
+octave-workspace
+# Editors and operating systems.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
