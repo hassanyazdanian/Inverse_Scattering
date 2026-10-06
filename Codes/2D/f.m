@@ -1,11 +1,11 @@
-function y = f(k,r,n,m)
-
-
-
-J1 = besselj(m,k*r); % Bessel function of first kind
-dJ1 = (m*besselj(m, k*r))/r - k*besselj(m + 1, k*r);
-
-J2  = besselj(m, k*n^(1/2)*r);
-dJ2 = (m*besselj(m, k*n^(1/2)*r))/r - k*n^(1/2)*besselj(m + 1, k*n^(1/2)*r);
-
-y = J1* dJ2- J2*dJ1;
+function value = f(k,n,m,radius)
+%F Disk transmission determinant for angular order m.
+if nargin < 4, radius = 1; end
+validateattributes(n,{'numeric'},{'scalar','real','finite','positive'});
+validateattributes(m,{'numeric'},{'scalar','integer','nonnegative'});
+validateattributes(radius,{'numeric'},{'scalar','real','finite','positive'});
+x = k*radius; y = sqrt(n)*x;
+dJx = (besselj(m-1,x)-besselj(m+1,x))/2;
+dJy = (besselj(m-1,y)-besselj(m+1,y))/2;
+value = k.*(sqrt(n)*besselj(m,x).*dJy-besselj(m,y).*dJx);
+end

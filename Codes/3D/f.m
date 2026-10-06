@@ -1,12 +1,9 @@
-function y = f(k,r,n,m)
-
-
-
-j1 = spherical_jn(m,k*r); % Spherical Bessel function of first kind
-% dj1 = d_spherical_jn(m,k*r);
-dj1 = pi^(1/2)*(k*besselj(m - 1/2, k*r) - (besselj(m + 1/2, k*r)*(m + 1/2))/r)*(1/(2*k*r))^(1/2) - (pi^(1/2)*besselj(m + 1/2, k*r))/(4*k*r^2*(1/(2*k*r))^(1/2));        
-
-j2  = spherical_jn(m, k*n^(1/2)*r); 
-% dj2 =  d_spherical_jn(m, k*n^(1/2)*r);
-dj2 = - pi^(1/2)*((besselj(m + 1/2, k*n^(1/2)*r)*(m + 1/2))/r - k*n^(1/2)*besselj(m - 1/2, k*n^(1/2)*r))*(1/(2*k*n^(1/2)*r))^(1/2) - (pi^(1/2)*besselj(m + 1/2, k*n^(1/2)*r))/(4*k*n^(1/2)*r^2*(1/(2*k*n^(1/2)*r))^(1/2));       
-y = j1* dj2- j2*dj1;
+function value = f(k,n,m,radius)
+%F Ball transmission determinant for spherical harmonic order m.
+if nargin < 4, radius = 1; end
+validateattributes(n,{'numeric'},{'scalar','real','finite','positive'});
+validateattributes(radius,{'numeric'},{'scalar','real','finite','positive'});
+x = k*radius; y = sqrt(n)*x;
+value = k.*(sqrt(n)*spherical_jn(m,x).*d_spherical_jn(m,y) ...
+    -spherical_jn(m,y).*d_spherical_jn(m,x));
+end

@@ -1,9 +1,10 @@
-function in = spherical_in(nu, x)
-% returns the Modified spherical Bessel functions of the first kind ynu(x)
-% x is a vector or it may be a matrix if nu is a scalar
-% if nu is a row and x a column vector, the output js is a matrix
-% [nnu lnu] = size(nu);
-% [nx lx] = size(x);
-% xm = repmat(x, 1, lnu);
-% is = sqrt(pi ./(2* xm)) .* besseli(nu + 0.5, x);
-in = sqrt(pi /(2*x))*besseli(nu + 0.5, x);
+function value = spherical_in(m,x)
+% Spherical Bessel function with its finite value at the origin.
+validateattributes(m,{'numeric'},{'scalar','integer','nonnegative'});
+if isa(x,'sym')
+    value = sqrt(pi./(2*x)).*besseli(m+sym(1)/2,x); return
+end
+value = zeros(size(x)); nonzero = x~=0;
+value(nonzero) = sqrt(pi./(2*x(nonzero))).*besseli(m+0.5,x(nonzero));
+value(~nonzero) = (m==0);
+end
